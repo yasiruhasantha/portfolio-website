@@ -16,7 +16,7 @@ function parsePost(source) {
   return { ...meta, tags, body, readingTime: supplied > 0 ? supplied : Math.max(1, Math.ceil(body.trim().split(/\s+/).filter(Boolean).length / 200)) };
 }
 async function fetchText(path) {
-  const response = await fetch(path);
+  const response = await fetch(path, { cache: 'no-cache' });
   if (!response.ok) throw new Error('Could not load post');
   return response.text();
 }
